@@ -60,12 +60,10 @@ X = df_attrition[1:]
 input_row = df_attrition[:1]
 
 # Encode y
-target_mapper = {'Stay': 0,
-                 'Leave': 1,}
+target_mapper = {'Yes': 0,
+                 'No': 1,}
 def target_encode(val):
- if val not in target_mapper:
-        print(f"Missing value: {val}")
- return target_mapper.get(val, 'default_value')
+  return target_mapper[val]
 
 y = y_raw.apply(target_encode)
 
