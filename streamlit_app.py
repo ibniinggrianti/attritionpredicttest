@@ -69,22 +69,19 @@ target_mapper = {'Yes': 0,
 #y = y_raw.apply(target_encode)
 y = df['Attrition'].map(target_mapper)
 
-# Check for missing values
-if X.isnull().any().any() or y.isnull().any():
-    st.error("There are missing values in the dataset. Please clean the data.")
-else:
-    # Proceed with splitting the data
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-    # Check the shape of the data after splitting
-    st.write("Shape of X_train:", X_train.shape)
-    st.write("Shape of y_train:", y_train.shape)
 
 # Step 1: Check for missing values
 missing_data = X.isnull().sum()
+# Drop rows with missing values in any column
+X_clean = X.dropna()
+
+# Drop columns with missing values
+X_clean = X.dropna(axis=1)
 
 # Step 2: Handle missing values by filling with mean/median or dropping
 X_clean = X.fillna(X.mean())  # Fill missing numerical values with mean
+X_clean = X.fillna(X.median())
+X_clean = X.fillna(X.mode().iloc[0])
 
 # Step 3: Check for missing values again after handling
 missing_data_after = X_clean.isnull().sum()
