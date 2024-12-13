@@ -40,6 +40,12 @@ data = {
 input_df = pd.DataFrame(data)
 input_attrition = pd.concat([input_df, X], axis=0)
 
+#Encode
+encode = ['Gender', 'MaritalStatus']
+df_attrition = pd.get_dummies(input_attrition, prefix='encoded')
+X = df_attrition[1:]
+input_row = df_attrition[:1]
+
 # Display in Streamlit
 with st.expander('Input Features'):
     st.write('**Input Features:**')
@@ -48,10 +54,6 @@ with st.expander('Input Features'):
     st.write('**Combined Attrition Data (Input + Original Dataset):**')
     st.dataframe(input_attrition)
 
-#Encode
-encode = ['Gender', 'MaritalStatus']
-df_attrition = pd.get_dummies(input_attrition, prefix='encoded')
-X = df_attrition[1:]
-input_row = df_attrition[:1]
-
+    st.write('**Encoded Input Attrition:**')
+    input_row
 
