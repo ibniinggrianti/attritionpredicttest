@@ -4,6 +4,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score
 
 st.title('Attrition Prediction')
 
@@ -72,4 +75,36 @@ with st.expander('Data Preparation'):
   st.dataframe(input_row)
   st.write('**Encoded y**')
   st.dataframe(y)
+
+#Model Traininh
+# Split the dataset
+X = df_attrition.iloc[1:]  # Features (excluding the first input row)
+y = y_raw.apply(target_encode)  # Target variable
+
+# Train-test split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Train the SVM model
+model = SVC(kernel='linear', probability=True, random_state=42)
+model.fit(X_train, y_train)
+
+# Evaluate the model
+y_pred = model.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Model Accuracy: {accuracy * 100:.2f}%")
+
+# Predict on user input
+input_row_encoded = df_attrition.iloc[:1]  # User input row
+prediction = model.predict(input_row_encoded)
+probability = model.predict_proba(input_row_encoded)
+
+# Display results
+st.subheader("Prediction Results")
+if prediction[0] == 1:
+    st.write("Prediction: The employee is likely to leave.")
+else:
+    st.write("Prediction: The employee is likely to stay.")
+st.write(f"Probability of Leaving: {probability[0][1] * 100:.2f}%")
+
+import joblib
 
