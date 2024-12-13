@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.ensemble import RandomForestClassifier
 
-#st.title('Attrition Prediction')
+st.title('Attrition Prediction')
 
 #st.subheader("Is your job worth keeping? Should you stay? Or just leave? Let's try!")
 st.write("You can see below for more information")
