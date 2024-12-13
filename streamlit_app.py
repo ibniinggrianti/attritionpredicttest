@@ -18,7 +18,7 @@ with st.sidebar:
   st.write(f"Your selected option: {Age}.")
 
 # DataFrame for the input features
-data = {
+input_data = {
     'Age': [Age],
 }
 input_df = pd.DataFrame(data)
