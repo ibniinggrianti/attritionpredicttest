@@ -6,7 +6,7 @@ import seaborn as sns
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 
-st.title('Attrition Prediction')
+#st.title('Attrition Prediction')
 
 st.subheader("Is your job worth keeping? Should you stay? Or just leave? Let's try!")
 st.write("You can see below for more information")
@@ -70,7 +70,7 @@ target_mapper = {'Yes': 0,
 y = df['Attrition'].map(target_mapper)
 
 
-#with st.expander('Data Preparation'):
+with st.expander('Data Preparation'):
   st.write('**Encoded X (Input Features)**')
   st.dataframe(input_row)
   st.write('**Encoded y**')
