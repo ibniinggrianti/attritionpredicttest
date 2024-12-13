@@ -80,6 +80,18 @@ else:
     st.write("Shape of X_train:", X_train.shape)
     st.write("Shape of y_train:", y_train.shape)
 
+# Step 1: Check for missing values
+missing_data = X.isnull().sum()
+
+# Step 2: Handle missing values by filling with mean/median or dropping
+X_clean = X.fillna(X.mean())  # Fill missing numerical values with mean
+
+# Step 3: Check for missing values again after handling
+missing_data_after = X_clean.isnull().sum()
+
+# Step 4: Train model with cleaned data
+clf.fit(X_clean, y)
+
 with st.expander('Data Preparation'):
   st.write('**Encoded X (Input Features)**')
   st.dataframe(input_row)
