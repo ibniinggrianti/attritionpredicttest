@@ -4,9 +4,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import train_test_split
-from sklearn.svm import SVC
-from sklearn.metrics import accuracy_score
 
 st.title('Attrition Prediction')
 
@@ -77,36 +74,19 @@ with st.expander('Data Preparation'):
   st.dataframe(y)
 
 #Model Training
+clf = RandomForestClassifier()
+clf.fit(X, y)
 
-# Split the data
-X_train, X_test, y_train, y_test = train_test_split(X_raw, y, test_size=0.2, random_state=42)
+## Apply model to make predictions
+prediction = clf.predict(input_row)
+prediction_proba = clf.predict_proba(input_row)
 
-# Fill missing values if any
-X_train.fillna(0, inplace=True)
-X_test.fillna(0, inplace=True)
+df_prediction_proba = pd.DataFrame(prediction_proba)
+df_prediction_proba.columns = ['Yes', 'No']
+df_prediction_proba.rename(columns={0: 'Yes',
+                                 1: 'No'})
 
-# Train the model
-model = SVC(kernel='linear', probability=True, random_state=42)
-model.fit(X_train, y_train)
 
-# Test the model
-y_pred = model.predict(X_test)
-accuracy = accuracy_score(y_test, y_pred)
-st.write(f"Model Accuracy: {accuracy * 100:.2f}%")
-
-# Prediction on user input
-input_row = df_attrition.iloc[:1]  # User input
-input_row.fillna(0, inplace=True)
-prediction = model.predict(input_row)
-probability = model.predict_proba(input_row)
-
-# Display prediction
-st.subheader("Prediction Results")
-if prediction[0] == 1:
-    st.write("Prediction: The employee is likely to leave.")
-else:
-    st.write("Prediction: The employee is likely to stay.")
-st.write(f"Probability of Leaving: {probability[0][1] * 100:.2f}%")
 
 
 
