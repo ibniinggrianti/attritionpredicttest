@@ -56,7 +56,7 @@ with st.expander('Input Features'):
 encode = ['Gender', 'MaritalStatus']
 df_attrition = pd.get_dummies(input_attrition, columns=encode, prefix=encode)
 #df_attrition[:1]
-  
+X = pd.get_dummies(df.drop('Attrition', axis=1), drop_first=True)  
 X = df_attrition[1:]
 input_row = df_attrition[:1]
 
@@ -65,8 +65,20 @@ target_mapper = {'Yes': 0,
                  'No': 1,}
 #def target_encode(val):
   #return target_mapper[val]
-y = y_raw.map(target_mapper)
+#y = y_raw.map(target_mapper)
 #y = y_raw.apply(target_encode)
+y = df['Attrition'].map(target_mapper)
+
+# Check for missing values
+if X.isnull().any().any() or y.isnull().any():
+    st.error("There are missing values in the dataset. Please clean the data.")
+else:
+    # Proceed with splitting the data
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    # Check the shape of the data after splitting
+    st.write("Shape of X_train:", X_train.shape)
+    st.write("Shape of y_train:", y_train.shape)
 
 with st.expander('Data Preparation'):
   st.write('**Encoded X (Input Features)**')
