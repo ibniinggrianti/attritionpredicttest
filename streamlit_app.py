@@ -16,3 +16,20 @@ with st.sidebar:
   st.header('Input Features')
   Age = st.slider("Age", min_value=18, max_value=60, value=25)
   st.write(f"Your selected option: {Age}.")
+
+# DataFrame for the input features
+data = {
+    'Age': [Age],
+}
+input_df = pd.DataFrame(data)
+
+# Combine the input data with the existing data
+input_attrition = pd.concat([input_df, X], axis=0).reset_index(drop=True)
+
+# Display in Streamlit
+with st.expander('Input Features'):
+    st.write('**Input Attrition (User Input Only):**')
+    st.dataframe(input_df)
+
+    st.write('**Combined Attrition Data (Input + Original Dataset):**')
+    st.dataframe(input_attrition)
