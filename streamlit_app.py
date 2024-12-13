@@ -47,3 +47,8 @@ with st.expander('Input Features'):
 
     st.write('**Combined Attrition Data (Input + Original Dataset):**')
     st.dataframe(input_attrition)
+
+#Encode
+encode = ['Gender', 'MaritalStatus']
+df_attrition = pd.get_dummies(input_attrition, prefix=encode)
+
