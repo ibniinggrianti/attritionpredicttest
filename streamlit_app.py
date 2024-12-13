@@ -82,6 +82,7 @@ clf.fit(X_train, y_train)
 
 # Step 1: Check for missing values
 missing_data = X.isnull().sum()
+
 # Drop rows with missing values in any column
 X_clean = X.dropna()
 
