@@ -46,9 +46,7 @@ input_attrition = pd.concat([input_df, X_raw], axis=0)
 
 #Encode
 encode = ['Gender', 'MaritalStatus']
-df_Attrition = pd.get_dummies(input_attrition, prefix='encoded')
-X = df_Attrition[1:]
-input_row = df_Attrition[:1]
+df_attrition = pd.get_dummies(input_attrition, prefix='encoded')
 
 # Display in Streamlit
 with st.expander('Input Features'):
@@ -57,7 +55,21 @@ with st.expander('Input Features'):
 
     st.write('**Combined Attrition Data (Input + Original Dataset):**')
     st.dataframe(input_attrition)
+  
+X = df_attrition[1:]
+input_row = df_attrition[:1]
 
-    st.write('**Encoded Input Attrition:**')
-    st.dataframe(input_row)
+# Encode y
+target_mapper = {'Stay': 0,
+                 'Leave': 1,}
+def target_encode(val):
+  return target_mapper[val]
+
+y = y_raw.apply(target_encode)
+
+with st.expander('Data preparation'):
+  st.write('**Encoded X (input features)**')
+  input_row
+  st.write('**Encoded y**')
+  y
 
