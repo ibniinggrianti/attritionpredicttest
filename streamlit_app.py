@@ -38,7 +38,7 @@ data = {
     'Gender': [Gender],
     'MaritalStatus': [MaritalStatus]
 }
-data['Gender'] = data['Gender'].map({'F': 'Female', 'M': 'Male'})
+data['Gender'] = pd.Series(data['Gender']).map({'F': 'Female', 'M': 'Male'})
 input_df = pd.DataFrame(data, index=[0])
 input_attrition = pd.concat([input_df, X_raw], axis=0)
 
