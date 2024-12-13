@@ -76,12 +76,7 @@ with st.expander('Data Preparation'):
   st.write('**Encoded y**')
   st.dataframe(y)
 
-#Model Traininh
-# Define X and y
-X_raw = df_attrition.iloc[1:]  # Exclude user input
-y_raw = data['Attrition']  # Target column
-target_mapper = {'Yes': 1, 'No': 0}
-y = y_raw.apply(target_mapper.get)
+#Model Training
 
 # Split the data
 X_train, X_test, y_train, y_test = train_test_split(X_raw, y, test_size=0.2, random_state=42)
