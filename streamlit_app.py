@@ -25,12 +25,12 @@ with st.sidebar:
 
   Gender_options = ["Male", "Female"]
   selected_gender = st.pills("Gender", Gender_options, selection_mode="single")
-  #Gender = selected_gender[0] if selected_gender else None  # Handle empty selection
+  Gender = selected_gender[0] if selected_gender else None  # Handle empty selection
   st.markdown(f"Your selected gender: {selected_gender}.")
 
   MaritalStatus_options = ["Single", "Married", "Divorced"]
   selected_marital_status = st.pills("Marital Status", MaritalStatus_options, selection_mode="single")
-  #MaritalStatus = selected_marital_status[0] if selected_marital_status else None  # Handle empty selection
+  MaritalStatus = selected_marital_status[0] if selected_marital_status else None  # Handle empty selection
   st.markdown(f"Your selected Marital Status: {selected_marital_status}.")
 
 # DataFrame for the input features
