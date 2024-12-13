@@ -78,13 +78,9 @@ X_clean = X.dropna()
 # Drop columns with missing values
 X_clean = X.dropna(axis=1)
 
-# Step 2: Handle missing values by filling with mean/median or dropping
-X_clean = X.fillna(X.mean())  # Fill missing numerical values with mean
-X_clean = X.fillna(X.median())
-X_clean = X.fillna(X.mode().iloc[0])
-
 # Step 3: Check for missing values again after handling
 missing_data_after = X_clean.isnull().sum()
+st.write("Missing Values After Cleaning:", missing_data_after)
 
 # Step 4: Train model with cleaned data
 clf.fit(X_clean, y)
