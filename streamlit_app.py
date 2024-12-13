@@ -12,7 +12,7 @@ st.write("You can see below for more information")
 
 # Load dataset (Ensure the CSV file is in the correct location)
 df = pd.read_csv("https://raw.githubusercontent.com/ibniinggrianti/attritionprediction/refs/heads/master/IBM-HR-Analytics-Employee-Attrition-and-Performance-Revised.csv")
-df
+#df
 
 X = df.drop('Attrition', axis=1)
 X_raw
