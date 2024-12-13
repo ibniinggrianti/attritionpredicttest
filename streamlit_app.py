@@ -65,8 +65,8 @@ target_mapper = {'Yes': 0,
                  'No': 1,}
 #def target_encode(val):
   #return target_mapper[val]
-
-y = y_raw.apply(target_encode)
+y = y_raw.map(target_mapper)
+#y = y_raw.apply(target_encode)
 
 with st.expander('Data Preparation'):
   st.write('**Encoded X (Input Features)**')
