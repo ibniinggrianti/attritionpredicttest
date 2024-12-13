@@ -54,7 +54,7 @@ with st.expander('Input Features'):
 #Encode
 encode = ['Gender', 'MaritalStatus']
 df_attrition = pd.get_dummies(input_attrition, columns=encode, prefix=encode)
-df_attrition[:1]
+#df_attrition[:1]
   
 X = df_attrition[1:]
 input_row = df_attrition[:1]
@@ -66,6 +66,8 @@ def target_encode(val):
   return target_mapper[val]
 
 y = y_raw.apply(target_encode)
+y
+y_raw
 
 with st.expander('Data preparation'):
   st.write('**Encoded X (input features)**')
