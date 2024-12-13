@@ -15,10 +15,8 @@ df = pd.read_csv("https://raw.githubusercontent.com/ibniinggrianti/attritionpred
 #df
 
 X_raw = df.drop('Attrition', axis=1)
-X_raw
 
 y_raw = df.Attrition
-y_raw
 
 with st.sidebar:
   st.header('Input Features')
