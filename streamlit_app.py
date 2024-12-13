@@ -17,7 +17,7 @@ df = pd.read_csv("https://raw.githubusercontent.com/ibniinggrianti/attritionpred
 X_raw = df.drop('Attrition', axis=1)
 X_raw
 
-y_raw = df.attrition
+y_raw = df.Attrition
 y_raw
 
 with st.sidebar:
@@ -46,9 +46,9 @@ input_attrition = pd.concat([input_df, X], axis=0)
 
 #Encode
 encode = ['Gender', 'MaritalStatus']
-df_attrition = pd.get_dummies(input_attrition, prefix=encode)
-X = df_attrition[1:]
-input_row = df_attrition[:1]
+df_Attrition = pd.get_dummies(input_attrition, prefix=encode)
+X = df_Attrition[1:]
+input_row = df_Attrition[:1]
 
 # Display in Streamlit
 with st.expander('Input Features'):
