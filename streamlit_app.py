@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+from sklearn.ensemble import RandomForestClassifier
 
 st.title('Attrition Prediction')
 
@@ -11,11 +12,14 @@ st.write("You can see below for more information")
 
 # Load dataset (Ensure the CSV file is in the correct location)
 df = pd.read_csv("https://raw.githubusercontent.com/ibniinggrianti/attritionprediction/refs/heads/master/IBM-HR-Analytics-Employee-Attrition-and-Performance-Revised.csv")
+df
 
 X = df.drop('Attrition', axis=1)
+X_raw
 
-y = df.Attrition
-  
+y = df.attrition
+y_raw
+
 with st.sidebar:
   st.header('Input Features')
   Age = st.slider("Age", min_value=18, max_value=60, value=25)
@@ -42,7 +46,7 @@ input_attrition = pd.concat([input_df, X], axis=0)
 
 #Encode
 encode = ['Gender', 'MaritalStatus']
-df_attrition = pd.get_dummies(input_attrition, prefix='encoded')
+df_attrition = pd.get_dummies(input_attrition, prefix=encode)
 X = df_attrition[1:]
 input_row = df_attrition[:1]
 
