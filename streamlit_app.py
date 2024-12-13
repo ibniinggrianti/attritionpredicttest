@@ -43,7 +43,7 @@ input_attrition = pd.concat([input_df, X_raw], axis=0)
 
 #Encode
 encode = ['Gender', 'MaritalStatus']
-df_attrition = pd.get_dummies(input_attrition, prefix=encode)
+df_attrition = pd.get_dummies(input_attrition, columns=encode, prefix=encode)
 df_attrition[:1]
 
 # Display in Streamlit
