@@ -70,6 +70,16 @@ target_mapper = {'Yes': 0,
 y = df['Attrition'].map(target_mapper)
 
 
+with st.expander('Data Preparation'):
+  st.write('**Encoded X (Input Features)**')
+  st.dataframe(input_row)
+  st.write('**Encoded y**')
+  st.dataframe(y)
+
+# Train Random Forest model
+clf = RandomForestClassifier(random_state=42)
+clf.fit(X_train, y_train)
+
 # Step 1: Check for missing values
 missing_data = X.isnull().sum()
 # Drop rows with missing values in any column
@@ -84,19 +94,6 @@ st.write("Missing Values After Cleaning:", missing_data_after)
 
 # Step 4: Train model with cleaned data
 clf.fit(X_clean, y)
-
-with st.expander('Data Preparation'):
-  st.write('**Encoded X (Input Features)**')
-  st.dataframe(input_row)
-  st.write('**Encoded y**')
-  st.dataframe(y)
-
-# Split data into training and test sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-# Train Random Forest model
-clf = RandomForestClassifier(random_state=42)
-clf.fit(X_train, y_train)
 
 # Make predictions
 prediction = clf.predict(input_row)
