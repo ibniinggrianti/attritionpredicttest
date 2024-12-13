@@ -55,5 +55,5 @@ with st.expander('Input Features'):
     st.dataframe(input_attrition)
 
     st.write('**Encoded Input Attrition:**')
-    input_row
+    st.dataframe(input_row)
 
