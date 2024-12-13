@@ -14,10 +14,10 @@ st.write("You can see below for more information")
 df = pd.read_csv("https://raw.githubusercontent.com/ibniinggrianti/attritionprediction/refs/heads/master/IBM-HR-Analytics-Employee-Attrition-and-Performance-Revised.csv")
 #df
 
-X = df.drop('Attrition', axis=1)
+X_raw = df.drop('Attrition', axis=1)
 X_raw
 
-y = df.attrition
+y_raw = df.attrition
 y_raw
 
 with st.sidebar:
