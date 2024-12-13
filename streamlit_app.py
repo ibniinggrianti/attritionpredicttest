@@ -18,16 +18,11 @@ with st.sidebar:
   st.write(f"Your selected option: {Age}.")
 
 # DataFrame for the input features
-input_data = {
+data = {
     'Age': [Age],
 }
 input_df = pd.DataFrame(data)
-
-# Define X as a subset of the original data (e.g., using 'Age' for simplicity)
-X = data[['Age']]  # Define X as a DataFrame containing the 'Age' column (or any other columns you want)
-
-# Combine the input data with the existing data
-input_attrition = pd.concat([input_df, X], axis=0).reset_index(drop=True)
+input_attrition = pd.concat([input_df, X], axis=0)
 
 # Display in Streamlit
 with st.expander('Input Features'):
