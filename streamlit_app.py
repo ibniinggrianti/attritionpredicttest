@@ -19,17 +19,23 @@ y = df.Attrition
 with st.sidebar:
   st.header('Input Features')
   Age = st.slider("Age", min_value=18, max_value=60, value=25)
-  st.write(f"Your selected option: {Age}.")
+  st.write(f"Your selected age: {Age}.")
 
   Gender_options = ["Male", "Female"]
   selected_gender = st.pills("Gender", Gender_options, selection_mode="single")
   Gender = selected_gender[0] if selected_gender else None  # Handle empty selection
-  st.markdown(f"Your selected Gender: {selected_gender}.")
+  st.markdown(f"Your selected gender: {selected_gender}.")
+
+  MaritalStatus_options = ["Single", "Married", "Divorced"]
+  selected_marital_status = st.pills("Marital Status", MaritalStatus_options, selection_mode="single")
+  MaritalStatus = selected_marital_status[0] if selected_marital_status else None  # Handle empty selection
+  st.markdown(f"Your selected Marital Status: {selected_marital_status}.")
 
 # DataFrame for the input features
 data = {
     'Age': [Age],
-    'Gender': [Gender]
+    'Gender': [Gender],
+    'MaritalStatus': [MaritalStatus]
 }
 input_df = pd.DataFrame(data)
 input_attrition = pd.concat([input_df, X], axis=0)
