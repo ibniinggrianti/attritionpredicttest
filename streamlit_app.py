@@ -37,12 +37,12 @@ data = {
     'Gender': [Gender],
     'MaritalStatus': [MaritalStatus]
 }
-input_df = pd.DataFrame(data)
+input_df = pd.DataFrame(data, index=[0])
 input_attrition = pd.concat([input_df, X], axis=0)
 
 #Encode
 encode = ['Gender', 'MaritalStatus']
-df_attrition = pd.get_dummies(input_attrition, prefix='encoded')
+df_attrition = pd.get_dummies(input_attrition, prefix=encode)
 X = df_attrition[1:]
 input_row = df_attrition[:1]
 
