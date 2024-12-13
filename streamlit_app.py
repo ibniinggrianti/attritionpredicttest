@@ -73,6 +73,10 @@ with st.expander('Data Preparation'):
   st.write('**Encoded y**')
   st.dataframe(y)
 
+print(X.dtypes)
+print(type(y))
+print(X.shape, y.shape)
+
 #Model Training
 clf = RandomForestClassifier()
 clf.fit(X, y)
