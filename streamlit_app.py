@@ -30,7 +30,7 @@ input_attrition = pd.concat([input_df, X], axis=0)
 
 # Display in Streamlit
 with st.expander('Input Features'):
-    st.write('**Input Attrition (User Input Only):**')
+    st.write('**Input Features:**')
     st.dataframe(input_df)
 
     st.write('**Combined Attrition Data (Input + Original Dataset):**')
