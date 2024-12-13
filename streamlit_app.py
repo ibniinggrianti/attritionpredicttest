@@ -77,28 +77,35 @@ with st.expander('Data Preparation'):
   st.dataframe(y)
 
 #Model Traininh
-# Split the dataset
-X = df_attrition.iloc[1:]  # Features (excluding the first input row)
-y = y_raw.apply(target_encode)  # Target variable
+# Define X and y
+X_raw = df_attrition.iloc[1:]  # Exclude user input
+y_raw = data['Attrition']  # Target column
+target_mapper = {'Yes': 1, 'No': 0}
+y = y_raw.apply(target_mapper.get)
 
-# Train-test split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+# Split the data
+X_train, X_test, y_train, y_test = train_test_split(X_raw, y, test_size=0.2, random_state=42)
 
-# Train the SVM model
+# Fill missing values if any
+X_train.fillna(0, inplace=True)
+X_test.fillna(0, inplace=True)
+
+# Train the model
 model = SVC(kernel='linear', probability=True, random_state=42)
 model.fit(X_train, y_train)
 
-# Evaluate the model
+# Test the model
 y_pred = model.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
-print(f"Model Accuracy: {accuracy * 100:.2f}%")
+st.write(f"Model Accuracy: {accuracy * 100:.2f}%")
 
-# Predict on user input
-input_row_encoded = df_attrition.iloc[:1]  # User input row
-prediction = model.predict(input_row_encoded)
-probability = model.predict_proba(input_row_encoded)
+# Prediction on user input
+input_row = df_attrition.iloc[:1]  # User input
+input_row.fillna(0, inplace=True)
+prediction = model.predict(input_row)
+probability = model.predict_proba(input_row)
 
-# Display results
+# Display prediction
 st.subheader("Prediction Results")
 if prediction[0] == 1:
     st.write("Prediction: The employee is likely to leave.")
@@ -106,5 +113,5 @@ else:
     st.write("Prediction: The employee is likely to stay.")
 st.write(f"Probability of Leaving: {probability[0][1] * 100:.2f}%")
 
-import joblib
+
 
