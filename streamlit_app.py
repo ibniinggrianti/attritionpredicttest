@@ -42,7 +42,7 @@ data = {
     'MaritalStatus': [MaritalStatus]
 }
 input_df = pd.DataFrame(data, index=[0])
-input_attrition = pd.concat([input_df, X], axis=0)
+input_attrition = pd.concat([input_df, X_raw], axis=0)
 
 #Encode
 encode = ['Gender', 'MaritalStatus']
