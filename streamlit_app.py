@@ -71,7 +71,7 @@ y = y_raw.apply(target_encode)
 
 with st.expander('Data preparation'):
   st.write('**Encoded X (input features)**')
-  st.dataframe(input_row)
+  #st.dataframe(input_row)
   st.write('**Encoded y**')
   st.dataframe(y)
 
