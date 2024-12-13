@@ -70,7 +70,7 @@ target_mapper = {'Yes': 0,
 y = df['Attrition'].map(target_mapper)
 
 
-with st.expander('Data Preparation'):
+#with st.expander('Data Preparation'):
   st.write('**Encoded X (Input Features)**')
   st.dataframe(input_row)
   st.write('**Encoded y**')
