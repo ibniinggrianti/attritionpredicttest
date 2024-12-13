@@ -21,9 +21,15 @@ with st.sidebar:
   Age = st.slider("Age", min_value=18, max_value=60, value=25)
   st.write(f"Your selected option: {Age}.")
 
+  Gender_options = ["Male", "Female"]
+  selected_gender = st.pills("Gender", Gender_options, selection_mode="single")
+  Gender = selected_gender[0] if selected_gender else None  # Handle empty selection
+  st.markdown(f"Your selected Gender: {selected_gender}.")
+
 # DataFrame for the input features
 data = {
     'Age': [Age],
+    'Gender': [Gender]
 }
 input_df = pd.DataFrame(data)
 input_attrition = pd.concat([input_df, X], axis=0)
