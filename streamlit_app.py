@@ -50,5 +50,5 @@ with st.expander('Input Features'):
 
 #Encode
 encode = ['Gender', 'MaritalStatus']
-df_attrition = pd.get_dummies(input_attrition, prefix=encode)
+df_attrition = pd.get_dummies(input_attrition, prefix='encoded')
 
