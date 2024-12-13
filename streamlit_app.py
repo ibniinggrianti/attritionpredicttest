@@ -12,7 +12,6 @@ st.write("You can see below for more information")
 
 # Load dataset (Ensure the CSV file is in the correct location)
 df = pd.read_csv("https://raw.githubusercontent.com/ibniinggrianti/attritionprediction/refs/heads/master/IBM-HR-Analytics-Employee-Attrition-and-Performance-Revised.csv")
-#df
 
 X_raw = df.drop('Attrition', axis=1)
 
@@ -45,6 +44,7 @@ input_attrition = pd.concat([input_df, X_raw], axis=0)
 #Encode
 encode = ['Gender', 'MaritalStatus']
 df_attrition = pd.get_dummies(input_attrition, prefix='encoded')
+df_attrition[:1]
 
 # Display in Streamlit
 with st.expander('Input Features'):
