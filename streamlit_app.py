@@ -65,7 +65,7 @@ target_mapper = {'Stay': 0,
 def target_encode(val):
  if val not in target_mapper:
         print(f"Missing value: {val}")
-    return target_mapper.get(val, 'default_value')
+ return target_mapper.get(val, 'default_value')
 
 y = y_raw.apply(target_encode)
 
