@@ -73,6 +73,12 @@ with st.expander('Data Preparation'):
   st.write('**Encoded y**')
   st.dataframe(y)
 
+y_raw = data["Attrition"].map({"Yes": 1, "No": 0})
+st.write("Dataset Shape:", data.shape)
+st.write("Features Shape:", X_raw.shape)
+st.write("Target Shape:", y_raw.shape)
+
+
 # Train-Test Split
 X_train, X_test, y_train, y_test = train_test_split(X_raw, y_raw, test_size=0.2, random_state=42)
 
